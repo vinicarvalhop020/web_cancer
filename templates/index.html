@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Formulário de Dados</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/index.css') }}"> 
+    <script>
+        document.addEventListener("DOMContentLoaded", function() { //só ativa quando as informações forem preenchidas
+            const form = document.querySelector("form");
+            const submitButton = form.querySelector("button[type='submit']");
+            const inputs = form.querySelectorAll("input, select");
+            submitButton.disabled = true;
+            const checkFormCompletion = () => {
+                let isFormComplete = true;
+                inputs.forEach(input => {
+                    if (!input.value.trim()) {
+                        isFormComplete = false;
+                    }
+                });
+                submitButton.disabled = !isFormComplete; 
+            };
+            inputs.forEach(input => {
+                input.addEventListener("input", checkFormCompletion);
+                input.addEventListener("change", checkFormCompletion);
+            });
+        });
+    </script>
+</head>
+<body>
+    <div class="background"></div>
+    <div class="content">
+    <h1>Inserir dados para predição do tipo de câncer</h1>
+    <form action="/predict" method="post">
+    
+        <label for="sexo">Sexo:</label>
+        <select id="sexo" name="sexo">
+            <option value="Feminino">Feminino</option>
+            <option value="Masculino">Masculino</option>
+        </select><br><br>
+
+        <label for="racacor">Raça/COR:</label>
+        <select id="racacor" name="racacor">
+            <option value="Preta">Preta</option>
+            <option value="Parda">Parda</option>
+            <option value="Branca">Branca</option>
+            <option value="Amarela">Amarela</option>
+            <option value="Indígena">Indígena</option>
+        </select><br><br>
+
+        <label for="clitrat">Clinícia de Tratamento:</label>
+        <select id="clitrat" name="clitrat">
+            <option value="Radioterapia">Radioterapia</option>
+            <option value="Ginecologia">Ginecologia</option>
+            <option value="Oncologia Clínica">Oncologia Clínica</option>
+            <option value="Mastologia">Mastologia</option>
+            <option value="Oncologia Cirúrgica">Oncologia Cirúrgica</option>
+            <option value="Cabeça e Pescoço">Cabeça e Pescoço</option>
+            <option value="Cirurgia Plástica">Cirurgia Plástica</option>
+            <option value="Cirurgia Geral">Cirurgia Geral</option>
+            <option value="Urologia">Urologia</option>
+            <option value="Hematologia Clínica">Hematologia Clínica</option>
+            <option value="Pneumologia">Pneumologia</option>
+            <option value="Cirurgia Cardiaca">Cirurgia Cardiaca</option>
+            <option value="Medicina Nuclear">Medicina Nuclear</option>
+            <option value="Abdômen Pélvica">Abdômen Pélvica</option>
+            <option value="Cirurgia Torácica">Cirurgia Torácica</option>
+            <option value="Gastrocirurgia">Gastrocirurgia</option>
+            <option value="Ginecologia/Obstetrícia">Ginecologia/Obstetrícia</option>
+            <option value="Cirurgia Abdominal">Cirurgia Abdominal</option>
+            <option value="Proctologia">Proctologia</option>
+            <option value="Dermatologia">Dermatologia</option>
+            <option value="Pediatria Oncológica">Pediatria Oncológica</option>
+            <option value="Clínica Médica">Clínica Médica</option>
+            <option value="Não Se Aplica">Não Se Aplica</option>
+            <option value="Gastroenterologia">Gastroenterologia</option>
+            <option value="Ortopedia">Ortopedia</option>
+            <option value="Tecido Ósseo e Conectivo">Tecido Ósseo e Conectivo</option>
+            <option value="Hemoterapia">Hemoterapia</option>
+            <option value="Oncologia Cutânea">Oncologia Cutânea</option>
+            <option value="Endocrinologia">Endocrinologia</option>
+            <option value="Otorrinolaringologia">Otorrinolaringologia</option>
+            <option value="Neurologia">Neurologia</option>
+            <option value="Neurocirurgia">Neurocirurgia</option>
+            <option value="Triagem">Triagem</option>
+            <option value="Oftalmologia">Oftalmologia</option>
+            <option value="Pediatria Cirúrgica">Pediatria Cirúrgica</option>
+            <option value="Cirurgia Vascular">Cirurgia Vascular</option>
+            <option value="Plástica Reparadora">Plástica Reparadora</option>
+            <option value="Cirurgia Pélvica">Cirurgia Pélvica</option>
+            <option value="Nefrologia">Nefrologia</option>
+            <option value="Suporte Terapêutico Oncológico">Suporte Terapêutico Oncológico</option>
+            <option value="Clínica da Dor">Clínica da Dor</option>
+            <option value="Endoscopia">Endoscopia</option>
+            <option value="Infectologia">Infectologia</option>
+            <option value="Odontologia">Odontologia</option>
+            <option value="Alergia/Imunologia">Alergia/Imunologia</option>
+            <option value="Pediatria">Pediatria</option>
+            <option value="Geriatria">Geriatria</option>
+            <option value="Estomato - Odontologia">Estomato - Odontologia</option>
+            <option value="Cemo">Cemo</option>
+        </select><br><br>
+
+        <label for="histfamc">Histórico Familiar de Câncer:</label>
+        <select id="histfamc" name="histfamc">
+            <option value="Sim">Sim</option>
+            <option value="Nao">Não</option>
+        </select><br><br>
+
+        <label for="alcoolis">Consumo de Álcool:</label>
+        <select id="alcoolis" name="alcoolis">
+            <option value="Nunca">Nunca</option>
+            <option value="Sim">Sim</option>
+            <option value="Ex-consumidor">Ex-consumidor</option>
+            <option value="Não avaliado">Não avaliado</option>
+            <option value="Não se aplica">Não se aplica</option>
+        </select><br><br>
+
+        <label for="tabagism">Tabagismo:</label>
+        <select id="tabagism" name="tabagism">
+            <option value="Nunca">Nunca</option>
+            <option value="Sim">Sim</option>
+            <option value="Ex-consumidor">Ex-consumidor</option>
+            <option value="Não avaliado">Não avaliado</option>
+            <option value="Não se aplica">Não se aplica</option>
+        </select><br><br>
+
+        <label for="loctudet">Localização do Tumor:</label>
+        <select id="loctudet" name="loctudet">
+            <option value="MAMA">MAMA</option>
+            <option value="COLO DO UTERO">COLO DO UTERO</option>
+            <option value="RETO">RETO</option>
+            <option value="COLON">COLON</option>
+            <option value="VULVA">VULVA</option>
+            <option value="LARINGE">LARINGE</option>
+            <option value="OUTRAS PARTES DA BOCA E DAS NAO ESPECIFICADAS">OUTRAS PARTES DA BOCA E DAS NAO ESPECIFICADAS</option>
+            <option value="PELE">PELE</option>
+            <option value="ESOFAGO">ESOFAGO</option>
+            <option value="BRONQUIO E PULMAO">BRONQUIO E PULMAO</option>
+            <option value="CANAL ANAL E ANUS">CANAL ANAL E ANUS</option>
+            <option value="RIM">RIM</option>
+            <option value="TIREOIDE">TIREOIDE</option>
+            <option value="CORPO DO UTERO">CORPO DO UTERO</option>
+            <option value="ESTOMAGO">ESTOMAGO</option>
+            <option value="LINFONODOS (GANGLIOS LINFATICOS)">LINFONODOS (GANGLIOS LINFATICOS)</option>
+            <option value="OVARIO">OVARIO</option>
+            <option value="LINGUA">LINGUA</option>
+            <option value="NASOFARINGE">NASOFARINGE</option>
+            <option value="AMIGDALAS">AMIGDALAS</option>
+            <option value="SEIOS DA FACE">SEIOS DA FACE</option>
+            <option value="PANCREAS">PANCREAS</option>
+            <option value="PALATO">PALATO</option>
+            <option value="ENCEFALO">ENCEFALO</option>
+            <option value="CONJUNTIVO SUBCUTANEO E OUTROS TECIDOS MOLES">CONJUNTIVO SUBCUTANEO E OUTROS TECIDOS MOLES</option>
+            <option value="LOCALIZACAO PRIMARIA DESCONHECIDA">LOCALIZACAO PRIMARIA DESCONHECIDA</option>
+            <option value="OUTRAS GLANDULAS SALIVARES MAIORES">OUTRAS GLANDULAS SALIVARES MAIORES</option>
+            <option value="OROFARINGE">OROFARINGE</option>
+            <option value="BASE DA LINGUA">BASE DA LINGUA</option>
+            <option value="ASSOALHO DA BOCA">ASSOALHO DA BOCA</option>
+            <option value="JUNCAO RETOSSIGMOIDIANA">JUNCAO RETOSSIGMOIDIANA</option>
+            <option value="VAGINA">VAGINA</option>
+            <option value="CORACAO, MEDIASTINO E PELURA">CORACAO, MEDIASTINO E PELURA</option>
+            <option value="LABIO">LABIO</option>
+            <option value="VESICULA BILIAR">VESICULA BILIAR</option>
+            <option value="SISTEMAS HEMATOPOETICO E RETICULOENDOTELIAL">SISTEMAS HEMATOPOETICO E RETICULOENDOTELIAL</option>
+            <option value="HIPOFARINGE">HIPOFARINGE</option>
+            <option value="OSSOS, ARTICUL. E CART. ARTICULAR DOS MEMBROS">OSSOS, ARTICUL. E CART. ARTICULAR DOS MEMBROS</option>
+            <option value="GLANDULA PAROTIDA">GLANDULA PAROTIDA</option>
+            <option value="URETER">URETER</option>
+            <option value="OLHO E ANEXOS">OLHO E ANEXOS</option>
+            <option value="BEXIGA">BEXIGA</option>
+            <option value="INTESTINO DELGADO">INTESTINO DELGADO</option>
+            <option value="PELVE RENAL">PELVE RENAL</option>
+            <option value="GENGIVA">GENGIVA</option>
+            <option value="OUTROS ORGAOS URINARIOS NAO ESPECIFICADOS">OUTROS ORGAOS URINARIOS NAO ESPECIFICADOS</option>
+            <option value="OUTRAS PARTES E PARTES ESPECIF. DAS VIAS BILIARES">OUTRAS PARTES E PARTES ESPECIF. DAS VIAS BILIARES</option>
+            <option value="RETROPERITONIO E PERITONIO">RETROPERITONIO E PERITONIO</option>
+            <option value="OSSOS, ARTICUL. E CART. ARTICULAR DE OUTRAS REGIOES">OSSOS, ARTICUL. E CART. ARTICULAR DE OUTRAS REGIOES</option>
+            <option value="FIGADO E VIAS BILIARES INTRA-HEPATICAS">FIGADO E VIAS BILIARES INTRA-HEPATICAS</option>
+            <option value="CAVIDADES NASAIS E OUVIDO MEDIO E INTERNO">CAVIDADES NASAIS E OUVIDO MEDIO E INTERNO</option>
+            <option value="LOCALIZACOES MAL DEFINIDAS">LOCALIZACOES MAL DEFINIDAS</option>
+            <option value="OUTROS ORGAOS GENITAIS FEMININOS E OS NAO ESPECIF.">OUTROS ORGAOS GENITAIS FEMININOS E OS NAO ESPECIF.</option>
+            <option value="OUTRAS LOCALIZACOES MAL DEF. DOS ORGAOS DIGESTIVOS">OUTRAS LOCALIZACOES MAL DEF. DOS ORGAOS DIGESTIVOS</option>
+            <option value="SEIO PERIFORME">SEIO PERIFORME</option>
+            <option value="GLANDULA SUPRARRENAL">GLANDULA SUPRARRENAL</option>
+            <option value="MEDULA ESPINHAL E OUTRAS PARTES DO S.N.C.">MEDULA ESPINHAL E OUTRAS PARTES DO S.N.C.</option>
+            <option value="UTERO">UTERO</option>
+            <option value="OUTRAS GLANDULAS ENDOCRINAS E ESTRUTURAS RELATIVAS">OUTRAS GLANDULAS ENDOCRINAS E ESTRUTURAS RELATIVAS</option>
+            <option value="NERVOS PERIFERICOS E DO SISTEMA NERVOSO AUTONOMO">NERVOS PERIFERICOS E DO SISTEMA NERVOSO AUTONOMO</option>
+            <option value="LOCALIZACOES MAL DEFINIDAS DO LABIO BOCA E FARINGE">LOCALIZACOES MAL DEFINIDAS DO LABIO BOCA E FARINGE</option>
+            <option value="PLACENTA">PLACENTA</option>
+            <option value="TIMO">TIMO</option>
+            <option value="PROSTATA">PROSTATA</option>
+            <option value="TRAQUEIA">TRAQUEIA</option>
+            <option value="MENINGES">MENINGES</option>
+            <option value="TESTICULO">TESTICULO</option>
+            <option value="PENIS">PENIS</option>
+            <option value="OUTROS ORGAOS GENITAIS MASCULINOS">OUTROS ORGAOS GENITAIS MASCULINOS</option>
+        </select><br><br>
+
+        <label for="estadiam">Estadiamento:</label>
+        <select id="estadiam" name="estadiam">
+            <option value="3A">3A</option>
+            <option value="1B">1B</option>
+            <option value="4">4</option>
+            <option value="3C">3C</option>
+            <option value="99">99</option>
+            <option value="2A">2A</option>
+            <option value="1">1</option>
+            <option value="3B">3B</option>
+            <option value="4A">4A</option>
+            <option value="2">2</option>
+            <option value="0">0</option>
+            <option value="2B">2B</option>
+            <option value="88">88</option>
+            <option value="1A">1A</option>
+            <option value="4B">4B</option>
+            <option value="1C">1C</option>
+            <option value="3">3</option>
+            <option value="4C">4C</option>
+            <option value="2C">2C</option>
+            <option value="00">00</option>
+            <option value="C">C</option>
+            <option value="43">43</option>
+            <option value="01">01</option>
+            <option value="02">02</option>
+            <option value="04">04</option>
+            <option value="9">9</option>
+            <option value="49">49</option>
+            <option value="B2">B2</option>
+            <option value="33">33</option>
+            <option value="B">B</option>
+            <option value="A">A</option>
+            <option value="0A">0A</option>
+            <option value="24">24</option>
+            <option value="03">03</option>
+            <option value="14">14</option>
+            <option value="13">13</option>
+        </select><br><br>
+
+        <label for="pritrath">Tipo de Tratamento:</label>
+        <select id="pritrath" name="pritrath">
+            <option value=" Outras">Outras</option>
+            <option value="Transplante de medula óssea">Transplante de medula óssea</option>
+            <option value="Quimioterapia">Quimioterapia</option>
+            <option value="nenhum">nenhum</option>
+            <option value="Radioterapia">Radioterapia</option>
+            <option value="Imunoterapia">Imunoterapia</option>
+            <option value="Cirurgia">Cirurgia</option>
+            <option value="Hormonioterapia">Hormonioterapia</option>            
+        </select><br><br>
+
+        <label for="dias">Dias:</label>
+        <input type="number" id="dias" name="dias"><br><br>
+
+        <label for="idade1">Idade:</label>
+        <input type="number" step="0.1" id="idade1" name="idade1"><br><br>
+
+        <label for="estadofinal">Estado Final:</label>
+        <select id="estadofinal" name="estadofinal">
+            <option value="Doença em progressão">Doença em progressão</option>
+            <option value="Não se aplica">Não se aplica</option>
+            <option value="Doença estável">Doença estável</option>
+            <option value="Sem evidência da doença (remissão completa)">Sem evidência da doença (remissão completa)</option>
+            <option value="Remissão parcial">Remissão parcial</option>
+        </select><br><br>
+
+        <button type="submit">Enviar</button>
+    </form>
+</body>
+</html>

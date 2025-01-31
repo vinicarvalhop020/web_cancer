@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/results.css') }}"> 
+    <title>Resultado da Predição</title>
+</head>
+<body>
+    <div class="background"></div>
+    <div class="content">
+    <h1>Resultado da Predição</h1>
+    <p>A predição é: {{ prediction }}</p>
+
+    <form action="{{ url_for('index') }}" method="get">
+        <button type="submit">Voltar</button>
+    </form>
+</body>
+</html>
