@@ -1,5 +1,16 @@
-venv
+# Ignora a pasta venv e todo o seu conteúdo
 venv/
-venv/Lib/site-packages/xgboost/lib/xgboost.dll
-venv/Lib/site-packages/clang/native/libclang.dll
-venv/Lib/site-packages/tensorflow/python/_pywrap_tensorflow_internal.pyd
+
+# Ignora arquivos de ambiente
+.env
+
+# Ignora cache do Python
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+*.db
+*.sqlite3
+
+# Ignora arquivos de configuração local
+settings/local.py
